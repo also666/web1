@@ -1,0 +1,1142 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="keywords" content="村安网、村安商城、村安网上商城、化妆品商城、个人彩护商城、手机数码商城、家居百货商城、男装内衣商城、女装内衣商城、食品酒水商城、家用电器商城、男女鞋靴商城、箱包配饰商城、母婴儿童用品商城、营养保健商城、数码影音商城、手机通讯商城">
+<meta name="description" content="村安商城是一个拥有个人彩护、手机数码、家居百货、母婴儿童、男女鞋靴、男装内衣、女装内衣、食品酒水、箱包配饰、家用电器、数码影音、营养保健等数万款产品的综合性网购商城，为您提供经济实惠的购物新生活">
+<title>商品详情</title>
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link rel="stylesheet" type="text/css" href="../css/detail.css">
+<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+$(".add-plus-input .add").click(function() {
+var $num = $(this).next(".num");
+var number = $num.attr("value");
+$num.attr("value",parseInt(number) + 1);
+});
+$(".add-plus-input .plus").click(function() {
+var $num = $(this).prev(".num");
+var number = $num.attr("value");
+$num.attr("value",parseInt(number) - 1);
+});
+})
+</script>
+<script src="../js/jquery1.42.min.js"></script>
+<script src="../js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript">
+ /*封装代码*/
+ (function() {
+ var Magnifier = function(el, opts) {
+ var self = this;
+ var defaults = {
+ event: "mouseover",
+ }
+ opts = opts || {};
+ for (var w in defaults) {
+ if ("undefined" == typeof opts[w]) {
+  opts[w] = defaults[w];
+ }
+ }
+ this.params = opts;
+ this.container = r(el);
+ if (this.container.length > 1) {
+ var x = [];
+ return this.container.each(function() {
+  x.push(new Magnifier(this, opts))
+ }), x
+ }
+ this.containers = this.container[0];
+ this.contbox = this.container.find(".magnifier-container")[0];
+ this.conmain = this.container.find(".magnifier-container")[0];
+ this.init();
+ }
+ Magnifier.prototype = {
+ init: function() {
+ var self = this;
+ this.rendDom();
+ this.mark = this.container.find(".magnifier-mark")[0];
+ this.float_box = this.container.find(".magnifier-float-box")[0];
+ this.big_box = this.container.find(".magnifier-big-box");
+ this.small = this.container.find(".magnifier-small")[0];
+ this.big_Image = this.big_box.find("img")[0];
+ this.event();
+ },
+ //渲染dom
+ rendDom: function() {
+ var self = this;
+ var initimg = this.container.find(".magnifier-thumb li img")[0].getAttribute("src");
+ var initimgs = this.container.find(".magnifier-thumb li img")[0].getAttribute("data-source");
+ var small = document.createElement("div");
+ small.className = "magnifier-small";
+ var mark = document.createElement("div");
+ mark.className = "magnifier-mark";
+ var float = document.createElement("div");
+ float.className = "magnifier-float-box";
+ var img = document.createElement("img");
+ img.setAttribute("src", initimg)
+ small.appendChild(mark);
+ small.appendChild(float);
+ small.appendChild(img);
+ var big_box = document.createElement("div");
+ big_box.className = "magnifier-big-box";
+ var boximg = document.createElement("img");
+ boximg.setAttribute("src", initimgs);
+ big_box.appendChild(boximg);
+ this.conmain.appendChild(small);
+ this.conmain.appendChild(big_box);
+ this.boximg = this.container.find(".magnifier-small img")[0];
+ this.tabimg();
+ },
+ //执行切换图片
+ tabimg: function() {
+ var self = this;
+ this.tabimgs = this.conmain = this.container.find(".magnifier-thumb li");
+ for (var i = 0; i < this.tabimgs.length; i++) {
+  self.tabimgs[i].addEventListener(this.params.event, function() {
+  for (var j = 0; j < self.tabimgs.length; j++) {
+  self.tabimgs[j].className = "";
+  }
+  this.className = "active";
+  var onec = this.children[0].getAttribute("src");
+  var onecd = this.children[0].getAttribute("data-source");
+  self.change(onec, onecd);
+  }, false);
+ }
+ },
+ //改变大小图片
+ change: function(o, b) {
+ this.boximg.setAttribute("src", o);
+ this.big_Image.setAttribute("src", b);
+ },
+ //执行初始化鼠标事件
+ event: function() {
+ var self = this;
+ self.mark.addEventListener('mouseover', function() {
+  self.float_box.style.display = "block";
+  self.big_box[0].style.display = "block";
+ }, false);
+ self.mark.addEventListener('mouseout', function() {
+  self.float_box.style.display = "none";
+  self.big_box[0].style.display = "none";
+ }, false);
+ self.mark.addEventListener('mousemove', function(e) {
+  var e = e || window.event; //兼容多个浏览器的event参数模式
+  self.moveevent(e)
+ }, false);
+ },
+ //开始移动
+ moveevent: function(e) {
+ var self = this;
+ var left = e.clientX - this.contbox.offsetLeft - this.small.offsetLeft - this.float_box.offsetWidth / 2;
+ var top = e.clientY - this.contbox.offsetTop - this.small.offsetTop - this.float_box.offsetHeight / 2;
+ if (left < 0) {
+  left = 0;
+ } else if (left > (this.mark.offsetWidth - this.float_box.offsetWidth)) {
+  left = this.mark.offsetWidth - this.float_box.offsetWidth;
+ }
+ if (top < 0) {
+  top = 0;
+ } else if (top > (this.mark.offsetHeight - this.float_box.offsetHeight)) {
+  top = this.mark.offsetHeight - this.float_box.offsetHeight;
+ }
+ this.float_box.style.left = left + "px";
+ this.float_box.style.top = top + "px";
+ var percentX = left / (this.mark.offsetWidth - this.float_box.offsetWidth);
+ var percentY = top / (this.mark.offsetHeight - this.float_box.offsetHeight);
+ this.big_Image.style.left = -percentX * (this.big_Image.offsetWidth - this.big_box[0].offsetWidth) + "px";
+ this.big_Image.style.top = -percentY * (this.big_Image.offsetHeight - this.big_box[0].offsetHeight) + "px";
+ }
+ }
+ var r = (function() {
+ var e = function(e) {
+ var a = this,
+  t = 0;
+ for (t = 0; t < e.length; t++) {
+  a[t] = e[t];
+ }
+ return a.length = e.length, this
+ };
+ e.prototype = {
+ addClass: function(e) {
+  if ("undefined" == typeof e) return this;
+  for (var a = e.split(" "), t = 0; t < a.length; t++)
+  for (var r = 0; r < this.length; r++) this[r].classList.add(a[t]);
+  return this
+ },
+ each: function(e) {
+  for (var a = 0; a < this.length; a++) e.call(this[a], a, this[a]);
+  return this
+ },
+ html: function(e) {
+  if ("undefined" == typeof e) return this[0] ? this[0].innerHTML : void 0;
+  for (var a = 0; a < this.length; a++) this[a].innerHTML = e;
+  return this
+ },
+ find: function(a) {
+  for (var t = [], r = 0; r < this.length; r++)
+  for (var i = this[r].querySelectorAll(a), s = 0; s < i.length; s++) t.push(i[s]);
+  return new e(t)
+ },
+ append: function(a) {
+  var t, r;
+  for (t = 0; t < this.length; t++)
+  if ("string" == typeof a) {
+  var i = document.createElement("div");
+  for (i.innerHTML = a; i.firstChild;) this[t].appendChild(i.firstChild)
+  } else if (a instanceof e)
+  for (r = 0; r < a.length; r++) this[t].appendChild(a[r]);
+  else this[t].appendChild(a);
+  return this
+ },
+ }
+ var a = function(a, t) {
+ var r = [],
+  i = 0;
+ if (a && !t && a instanceof e) {
+  return a;
+ }
+ if (a) {
+  if ("string" == typeof a) {
+  var s, n, o = a.trim();
+  if (o.indexOf("<") >= 0 && o.indexOf(">") >= 0) {
+  var l = "div";
+  for (0 === o.indexOf("<li") && (l = "ul"), 0 === o.indexOf("<tr") && (l = "tbody"), (0 === o.indexOf("<td") || 0 === o.indexOf("<th")) && (l = "tr"), 0 === o.indexOf("<tbody") && (l = "table"), 0 === o.indexOf("<option") && (l = "select"), n = document.createElement(l), n.innerHTML = a, i = 0; i < n.childNodes.length; i++) r.push(n.childNodes[i])
+  } else
+  for (s = t || "#" !== a[0] || a.match(/[ .<>:~]/) ? (t || document).querySelectorAll(a) : [document.getElementById(a.split("#")[1])], i = 0; i < s.length; i++) s[i] && r.push(s[i])
+  } else if (a.nodeType || a === window || a === document) {
+  r.push(a);
+  } else if (a.length > 0 && a[0].nodeType) {
+  for (i = 0; i < a.length; i++) {
+  r.push(a[i]);
+  }
+  }
+ }
+ return new e(r)
+ };
+ return a;
+ }())
+ window.magnifier = Magnifier;
+ })()
+ /*封装代码*/
+ </script>
+</head>
+
+<body>
+<div class="item_box">
+<div class="fix">
+  <div class="person"> <a href="#"><i class="iconfont">&#xe605;</i></a> </div>
+  <div class="cat"> <a href="shopcart.html"><i class="iconfont">&#xe601;</i></a>
+    <p><a href="shopcart.html">购物车</a></p>
+  </div>
+  <div class="custom_service"> <a href="#"><i class="iconfont">&#xe62c;</i></a> </div>
+  <div class="APP"> <a href="#">
+    <p>APP</p>
+    </a>
+    <div class="APP_card"> <img src="../images/app-code.png"> </div>
+  </div>
+  <div class="back_to_top"> <a href="#"><i class="iconfont">&#xe60f;</i></a> </div>
+</div>
+<div class="item_box_top">
+  <div id="topbar">
+    <div class="topbar">
+      <div class="home">
+        <div class="home_left">
+          <p><a href="#"><b class="iconfont">&#xe62b;</b>村安商城</a><i class="iconfont">&#xe627;</i></p>
+        </div>
+        <div class="home-ed-card">
+          <p><em class="iconfont">&#xe952;</em><a href="#">手机APP<small class="iconfont">&#xe600;</small></a></p>
+          <div class="ed-cord"><img src="../images/top-code.png"></div>
+        </div>
+      </div>
+      <div class="user_login">
+        <p>欢迎来到村安商城！</p>
+        <span><a href="login.html" style="color:red;">[登录]</a> 或 <a href="register.html" style="color:red;">[注册]</a></span>
+        <ul class="login">
+          <li>
+            <p><span>|</span><a href="#" class="ca">我的村安</a></p>
+            <div class="submenu_nav"><a href="#">积分抵现</a> <a href="#">我的收藏</a> <a href="#">我的余额</a> <a href="#">我的评论</a> <a href="#">礼券/礼品卡</a></div>
+          </li>
+          <li>
+            <p><span>|</span><a href="#">我的订单</a></p>
+          </li>
+          <li>
+            <p><span>|</span><a href="#" class="ca">帮助中心</a></p>
+            <div class="submenu_nav1"><a href="#">联系客服</a> <a href="#">我要投诉</a> <a href="#">自助发票</a></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="search">
+    <div class="logo"> <a href="#"><img src="../images/logo.png"></a> </div>
+    <div class="user_search">
+      <div class="searchbar">
+        <form action="" method="post" id="#seachbar">
+          <input type="text"  size="60" id="search">
+          <button id="search_button"><b class="iconfont">&#xe674;</b></button>
+        </form>
+      </div>
+      <div class="shopping_cart"><a href="shopcart.html"><b class="iconfont">&#xe601;</b>我的购物车 <strong>0</strong>件 </a></div>
+    </div>
+  </div>
+  <div class="nav_box">
+    <div class="menu_box">
+      <h3>商品服务分类</h3>
+      <ul class="sidebar">
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe617;</b><span>个人彩护</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu">
+            <div class="submenu_left">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">日常护肤</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">洁面</a></p>
+                    <p><a target="_blank" href="#">柔肤/爽肤水</a></p>
+                    <p><a target="_blank" href="#">乳霜</a></p>
+                    <p><a target="_blank" href="#">精华液</a></p>
+                    <p><a target="_blank" href="#">眼膜</a></p>
+                    <p><a target="_blank" href="#">面膜</a></p>
+                    <p><a target="_blank" href="#">精油</a></p>
+                    <p><a target="_blank" href="#">眼霜</a></p>
+                    <p><a target="_blank" href="#">唇膏</a></p>
+                    <p><a target="_blank" href="#">防晒</a></p>
+                    <p><a target="_blank" href="#">洁肤</a></p>
+                    <p><a target="_blank" href="#">喷雾</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">女性护理</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">私密护理</a></p>
+                      <p><a target="_blank" href="#">卫生巾</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="submenu_left_con_two">
+                  <div class="submenu_tit"> <a target="_blank" href="#">护肤套装</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">护肤套装</a></p>
+                    <p><a target="_blank" href="#">彩妆套装</a></p>
+                    <p><a target="_blank" href="#">男士套装 </a></p>
+                    <p><a target="_blank" href="#">香水套装 </a></p>
+                    <p><a target="_blank" href="#">美体套装</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">个人护理</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">洗发护发</a></p>
+                      <p><a target="_blank" href="#">沐浴用品</a></p>
+                      <p><a target="_blank" href="#">手足护理</a></p>
+                      <p><a target="_blank" href="#">颈部护理 </a></p>
+                      <p><a target="_blank" href="#">纤体塑形 </a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="submenu_left_con_three">
+                  <div class="submenu_tit"> <a target="_blank" href="#">药妆产品</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">敏感损伤</a></p>
+                    <p><a target="_blank" href="#">痘痘痤疮</a></p>
+                    <p><a target="_blank" href="#">美白淡斑</a></p>
+                    <p><a target="_blank" href="#">老化皱纹</a></p>
+                    <p><a target="_blank" href="#">缺水干燥</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">男士用品</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">洁面</a></p>
+                      <p><a target="_blank" href="#">润肤爽肤</a></p>
+                      <p><a target="_blank" href="#">祛痘</a></p>
+                      <p><a target="_blank" href="#">控油 </a></p>
+                      > </div>
+                  </div>
+                </div>
+                <div class="submenu_left_con_four">
+                  <div class="submenu_tit"> <a target="_blank" href="#">彩妆香水</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">底妆</a></p>
+                    <p><a target="_blank" href="#">眼妆</a></p>
+                    <p><a target="_blank" href="#">唇妆</a></p>
+                    <p><a target="_blank" href="#">腮红</a></p>
+                    <p><a target="_blank" href="#">卸妆</a></p>
+                    <p><a target="_blank" href="#">美甲</a></p>
+                    <p><a target="_blank" href="#">香水</a></p>
+                    <p><a target="_blank" href="#">BB/cc霜</a></p>
+                    <p><a target="_blank" href="#">美容工具</a></p>
+                    <p><a target="_blank" href="#">散粉/粉饼</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img1.jpg"></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe6f2;</b><span>家居百货</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu" style="width:327px;">
+            <div class="submenu_left" style="width:100px;">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">床品布艺</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">床品</a></p>
+                    <p><a target="_blank" href="#">床品套件</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">生活日用</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">毛巾浴巾</a></p>
+                      <p><a target="_blank" href="#">水具水杯</a></p>
+                      <p><a target="_blank" href="#">烹饪锅具</a></p>
+                      <p><a target="_blank" href="#">家居装饰</a></p>
+                      <p><a target="_blank" href="#">雨具伞具</a></p>
+                      <p><a target="_blank" href="#">清洁用具</a></p>
+                      <p><a target="_blank" href="#">餐饮用具</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img2.jpg"></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe664;</b><span>母婴儿童</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu" style="width:327px;">
+            <div class="submenu_left" style="width:100px;">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">童装童鞋</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">童鞋</a></p>
+                    <p><a target="_blank" href="#">儿童服饰</a></p>
+                    <p><a target="_blank" href="#">儿童配饰</a></p>
+                    <p><a target="_blank" href="#">婴儿服饰</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">宝宝营养</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">婴幼奶粉</a></p>
+                      <p><a target="_blank" href="#">婴儿辅食</a></p>
+                    </div>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">孕婴用品</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">洗护用品</a></p>
+                      <p><a target="_blank" href="#">孕产用品</a></p>
+                      <p><a target="_blank" href="#">车床玩具</a></p>
+                      <p><a target="_blank" href="#">婴儿纸尿裤</a></p>
+                      <p><a target="_blank" href="#">宝宝寝具</a></p>
+                      <p><a target="_blank" href="#">儿童文具</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img3.jpg"></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe641;</b><span>男女鞋靴</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu" style="width:327px;">
+            <div class="submenu_left" style="width:100px;">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">男鞋</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">布鞋</a></p>
+                    <p><a target="_blank" href="#">凉鞋</a></p>
+                    <p><a target="_blank" href="#">皮鞋</a></p>
+                    <p><a target="_blank" href="#">拖鞋</a></p>
+                    <p><a target="_blank" href="#">休闲鞋</a></p>
+                    <p><a target="_blank" href="#">豆豆鞋</a></p>
+                    <p><a target="_blank" href="#">靴子</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">女鞋</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">凉鞋</a></p>
+                      <p><a target="_blank" href="#">单鞋</a></p>
+                      <p><a target="_blank" href="#">休闲鞋</a></p>
+                      <p><a target="_blank" href="#">拖鞋</a></p>
+                      <p><a target="_blank" href="#">布鞋</a></p>
+                      <p><a target="_blank" href="#">靴子</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img4.jpg"></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe7c9;</b><span>男装内衣</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu" style="width:447px;">
+            <div class="submenu_left" style="width:220px;">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">上衣</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">POLO衫</a></p>
+                    <p><a target="_blank" href="#">T恤</a></p>
+                    <p><a target="_blank" href="#">衬衫</a></p>
+                    <p><a target="_blank" href="#">西服</a></p>
+                    <p><a target="_blank" href="#">休闲外套</a></p>
+                    <p><a target="_blank" href="#">针织衫</a></p>
+                    <p><a target="_blank" href="#">卫衣</a></p>
+                    <p><a target="_blank" href="#">特色服饰</a></p>
+                  </div>
+                </div>
+                <div class="submenu_left_con_two">
+                  <div class="submenu_tit"> <a target="_blank" href="#">内衣</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">背心</a></p>
+                    <p><a target="_blank" href="#">内裤</a></p>
+                    <p><a target="_blank" href="#">袜子 </a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">下装</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">牛仔裤</a></p>
+                      <p><a target="_blank" href="#">西裤</a></p>
+                      <p><a target="_blank" href="#">休闲裤</a></p>
+                      <p><a target="_blank" href="#">哈伦裤</a></p>
+                      <p><a target="_blank" href="#">小脚裤</a></p>
+                      <p><a target="_blank" href="#">运动裤</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img5.jpg"></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe635;</b><span>女装内衣</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu" style="width:447px; height:456px;">
+            <div class="submenu_left" style="width:220px;">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">上衣</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">T恤</a></p>
+                    <p><a target="_blank" href="#">背心吊带</a></p>
+                    <p><a target="_blank" href="#">衬衫</a></p>
+                    <p><a target="_blank" href="#">外套</a></p>
+                    <p><a target="_blank" href="#">雪纺衫</a></p>
+                    <p><a target="_blank" href="#">毛衣针织衫</a></p>
+                    <p><a target="_blank" href="#">卫衣</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">裙装</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">半身裙</a></p>
+                      <p><a target="_blank" href="#">连衣裙</a></p>
+                      <p><a target="_blank" href="#">套装</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="submenu_left_con_two">
+                  <div class="submenu_tit"> <a target="_blank" href="#">内衣</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">家居服</a></p>
+                    <p><a target="_blank" href="#">内裤</a></p>
+                    <p><a target="_blank" href="#">文胸 </a></p>
+                    <p><a target="_blank" href="#">袜子 </a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">裤装</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">打底裤</a></p>
+                      <p><a target="_blank" href="#">牛仔裤</a></p>
+                      <p><a target="_blank" href="#">休闲裤</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img6.jpg"></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe60a;</b><span>食品酒水</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu" style="width:447px;">
+            <div class="submenu_left" style="width:220px;">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">食品饮料</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">茶叶</a></p>
+                    <p><a target="_blank" href="#">冲调</a></p>
+                    <p><a target="_blank" href="#">坚果炒货</a></p>
+                    <p><a target="_blank" href="#">蜜饯果干</a></p>
+                    <p><a target="_blank" href="#">糖果.巧克力</a></p>
+                    <p><a target="_blank" href="#">休闲零食</a></p>
+                    <p><a target="_blank" href="#">地方特产</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">粮油米面</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">南北干货</a></p>
+                      <p><a target="_blank" href="#">食用油</a></p>
+                      <p><a target="_blank" href="#">调味酱料</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="submenu_left_con_two">
+                  <div class="submenu_tit"> <a target="_blank" href="#">饼干糕点</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">月饼</a></p>
+                    <p><a target="_blank" href="#">饼干</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">酒水</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">葡萄酒</a></p>
+                    </div>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">家禽农牧</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">肉禽蛋奶</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img7.jpg"></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe628;</b><span>箱包配饰</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu" style="width:447px;">
+            <div class="submenu_left" style="width:220px;">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">潮流女包</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">单肩包</a></p>
+                    <p><a target="_blank" href="#">钱包卡包</a></p>
+                    <p><a target="_blank" href="#">手提包</a></p>
+                    <p><a target="_blank" href="#">双肩包</a></p>
+                    <p><a target="_blank" href="#">手包</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">品质男包</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">双肩包</a></p>
+                      <p><a target="_blank" href="#">公文包</a></p>
+                      <p><a target="_blank" href="#">钱包卡包</a></p>
+                      <p><a target="_blank" href="#">手包</a></p>
+                      <p><a target="_blank" href="#">休闲包</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="submenu_left_con_two">
+                  <div class="submenu_tit"> <a target="_blank" href="#">功能箱包</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">旅行箱</a></p>
+                    <p><a target="_blank" href="#">书包</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">珠宝配饰</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">饰品</a></p>
+                      <p><a target="_blank" href="#">手表</a></p>
+                      <p><a target="_blank" href="#">皮带</a></p>
+                      <p><a target="_blank" href="#">围巾帽子 </a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img8.jpg"></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe608;</b><span>家用电器</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu" style="width:447px;">
+            <div class="submenu_left" style="width:220px;">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">生活电器</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">挂烫机</a></p>
+                    <p><a target="_blank" href="#">电风扇</a></p>
+                    <p><a target="_blank" href="#">加湿器</a></p>
+                    <p><a target="_blank" href="#">空气净化器</a></p>
+                    <p><a target="_blank" href="#">干衣机</a></p>
+                    <p><a target="_blank" href="#">足浴盆</a></p>
+                    <p><a target="_blank" href="#">取暖机</a></p>
+                    <p><a target="_blank" href="#">电饭煲</a></p>
+                    <p><a target="_blank" href="#">饮水机</a></p>
+                    <p><a target="_blank" href="#">厨房电器</a></p>
+                    <p><a target="_blank" href="#">电水壶</a></p>
+                    <p><a target="_blank" href="#">破壁机</a></p>
+                    <p><a target="_blank" href="#">扫地机器人</a></p>
+                  </div>
+                </div>
+                <div class="submenu_left_con_two">
+                  <div class="submenu_tit"> <a target="_blank" href="#">个人护理</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">剃须刀</a></p>
+                    <p><a target="_blank" href="#">电吹风</a></p>
+                    <p><a target="_blank" href="#">剃/脱毛器 </a></p>
+                    <p><a target="_blank" href="#">毛球修剪器 </a></p>
+                    <p><a target="_blank" href="#">掏耳器</a></p>
+                    <p><a target="_blank" href="#">直发棒</a></p>
+                    <p><a target="_blank" href="#">理发器</a></p>
+                    <p><a target="_blank" href="#">美容仪</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img9.jpg"></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe621;</b><span>手机通讯</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu" style="width:447px;">
+            <div class="submenu_left" style="width:220px;">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">手机通讯</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">苹果</a></p>
+                    <p><a target="_blank" href="#">三星</a></p>
+                    <p><a target="_blank" href="#">小米</a></p>
+                    <p><a target="_blank" href="#">华为</a></p>
+                    <p><a target="_blank" href="#">中兴</a></p>
+                    <p><a target="_blank" href="#">联想</a></p>
+                    <p><a target="_blank" href="#">酷派</a></p>
+                    <p><a target="_blank" href="#">HTC</a></p>
+                    <p><a target="_blank" href="#">索尼</a></p>
+                    <p><a target="_blank" href="#">朵唯</a></p>
+                    <p><a target="_blank" href="#">金立</a></p>
+                    <p><a target="_blank" href="#">诺基亚</a></p>
+                    <p><a target="_blank" href="#">OPPO</a></p>
+                    <p><a target="_blank" href="#">一加</a></p>
+                    <p><a target="_blank" href="#">魅族</a></p>
+                    <p><a target="_blank" href="#">VIVO</a></p>
+                  </div>
+                </div>
+                <div class="submenu_left_con_two">
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">长虹</a></p>
+                    <p><a target="_blank" href="#">飞利浦</a></p>
+                    <p><a target="_blank" href="#">美图</a></p>
+                  </div>
+                  <div class="submenu_tit" style="margin-top:20px;"> <a target="_blank" href="#">手机配件</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">电池/移动电源</a></p>
+                    <p><a target="_blank" href="#">蓝牙耳机</a></p>
+                    <p><a target="_blank" href="#">手机耳机</a></p>
+                    <p><a target="_blank" href="#">数据线/充电器 </a></p>
+                    <p><a target="_blank" href="#">存储卡 </a></p>
+                    <p><a target="_blank" href="#">智能设备</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img10.jpg"></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe620;</b><span>数码影音</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu" style="width:327px;">
+            <div class="submenu_left" style="width:100px;">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">电脑</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">笔记本电脑</a></p>
+                    <p><a target="_blank" href="#">平板电脑</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">时尚影音</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">数码相机</a></p>
+                      <p><a target="_blank" href="#">数码摄像机</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img11.jpg"></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="menu"><a href="#"><b class="iconfont">&#xe611;</b><span>营养保健</span><i class="iconfont">&#xe69a;</i></a></div>
+          <div class="submenu" style="width:327px;">
+            <div class="submenu_left" style="width:100px;">
+              <div class="submenu_left_con">
+                <div class="submenu_left_con_one">
+                  <div class="submenu_tit"> <a target="_blank" href="#">滋补养生</a> </div>
+                  <div class="submenu_quickmenu">
+                    <p><a target="_blank" href="#">保健品</a></p>
+                    <p><a target="_blank" href="#">参茸贵细</a></p>
+                    <p><a target="_blank" href="#">虫草花香</a></p>
+                    <p><a target="_blank" href="#">蜂产品</a></p>
+                    <p><a target="_blank" href="#">养生茶饮</a></p>
+                    <p><a target="_blank" href="#">药食同源</a></p>
+                  </div>
+                  <div class="two_tit">
+                    <div class="submenu_tit"> <a target="_blank" href="#">营养健康</a> </div>
+                    <div class="submenu_quickmenu">
+                      <p><a target="_blank" href="#">美体塑身</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submenu_right"><a href="#"><img src="../images/side-img12.jpg"></a></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ul class="nav">
+      <li><a href="#">数码馆</a></li>
+      <li><a href="#">美妆馆</a></li>
+      <li><a href="#">食品馆</a></li>
+      <li><a href="#">品牌专区</a></li>
+      <li><a href="#">0元购</a></li>
+      <li><a href="#">购物券专区</a></li>
+      <li><a href="#">宅购通宝专区</a></li>
+      <li><a href="#">消费（券）积分</a></li>
+      <li><a href="#"><img src="../images/top-nav-img.png"></a></li>
+    </ul>
+  </div>
+</div>
+<div id="content">
+  <div class="content">
+    <h3><b><a href="#">女装内衣</a></b> > <a href="#">裙装</a> > <a href="#">连衣裙</a> > <a href="#">【女神格调】PLAYACH 条纹撞色高领套头针织长袖连衣裙</a> </h3>
+    <div class="goods_con">
+      <div class="con_left">
+       <div class="main">
+ 		<div class="magnifier-box" id="magnifier1">
+ 			<div class="magnifier-container"></div>
+ 				<ul class="magnifier-thumb">
+ 					<li class="active">
+ 						<img src="../images/details-1-1-1.3.jpg" data-source="../images/details-1-1-1.2.jpg"/>
+ 					</li>
+  					<li>
+ 						<img src="../images/details-1-1-2.1.jpg" data-source="../images/details-1-1-2.2.jpg"/>
+ 					</li>
+ 					<li>
+ 						<img src="../images/details-1-1-3.1.jpg" data-source="../images/details-1-1-4.2.jpg"/>
+ 					</li>
+ 					<li>
+ 						<img src="../images/details-1-1-4.1.jpg" data-source="../images/details-1-1-4.2.jpg"/>
+ 					</li>
+ 				</ul>
+ 			</div>
+ 			<script type="text/javascript">
+ 				new magnifier("#magnifier1");
+ 			</script>
+ 		</div>
+        <div class="goods_bh">
+          <div class="goods_bh_left">
+            <p>商品编号：NZ17AW053KT</p>
+            <div class="goods_logo"><a href="#"><span></span></a><a href="#"><em></em></a><a href="#"><i></i></a><a href="#"><small></small></a><a href="#"><big></big></a><a href="#"><sub></sub></a></div>
+          </div>
+          <div class="goods_bh_right">
+            <h3><a href="#"><i class="iconfont">&#xe755;</i>关注商品</a></h3>
+          </div>
+        </div>
+      </div>
+      <div class="con_center">
+        <h2>【女神格调】PLAYACH 条纹撞色高领套头针织长袖连衣裙</h2>
+        <div class="price">
+          <p>村 安 价：<b>￥268.00</b> (7.3)折</p>
+          <h4>官网价 <s>￥368</s></h4>
+        </div>
+        <h3><em>促销信息：</em><b>下单立减</b><span>本商品下单立减30元</span></h3>
+        <div class="xq">
+          <p>所属品牌：<span>PLAYACH</span></p>
+          <p>商品货号：<span>NZ17AW053KT</span></p>
+          <p><em>评</em>价：<span><a href="#">0</a>人评论</span></p>
+          <p><em>库</em>存：<span>库存充足</span></p>
+          <p><em>运</em>费：<span>满99包邮</span></p>
+        </div>
+        <div class="choose">
+          <p>颜色<span><a href="#">浅灰色</a></span></p>
+          <p>尺码<b><a href="#">s</a></b><em><a href="#">m</a></em></p>
+          <div class="add-plus-input"> <a href="javascript:;" class="add btn" id="a">+</a>
+            <input type="text" class="num" value="0" />  
+            <a href="javascript:;" class="plus btn" id="p">-</a>
+             </div>
+          <strong><a href="shopcart.html"><b class="iconfont">&#xe601;</b>加入购物车</a></strong> <sup><a href="#">立即购买</a></sup> </div>
+      </div>
+      <div class="con_right">
+        <div class="goods_logo"> <a href="store.html"><img src="../images/details-1-logo.png"></a> </div>
+        <p>商家：<span><a href="store.html">PLAYACH专卖店</a></span></p>
+        <div class="con_right_bottom"> <em><a href="store.html">进入店铺</a></em><i><a href="store.html">关注店铺</a></i>
+          <p>服务支持：</p>
+          <span><a href="#"><b>正</b>正品保证</a></span> <span><a href="#"><b>真</b>假一罚三</a></span> <span><a href="#"><b>退</b>15天退换货</a></span> 
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="detail">
+  <div class="detail clearfix">
+    <div class="detail_left">
+      <div class="detail_left_top">
+        <h3>热销商品排行榜</h3>
+        <ul>
+          <li>
+            <div class="left"> <a href="#"><img src="../images/details-1-2-1.jpg"></a> </div>
+            <div class="right">
+              <p>￥239.00</p>
+              <span>已出售8笔</span> 
+            </div>
+          </li>
+          <li>
+            <div class="left"> <a href="#"><img src="../images/details-1-2-2.jpg"></a> </div>
+            <div class="right">
+              <p>￥312.00</p>
+              <span>已出售8笔</span> 
+            </div>
+          </li>
+          <li>
+            <div class="left"> <a href="#"><img src="../images/details-1-2-3.jpg"></a> </div>
+            <div class="right">
+              <p>￥209.00</p>
+              <span>已出售6笔</span> </div>
+          </li>
+          <li>
+            <div class="left"> <a href="#"><img src="../images/details-1-2-4.jpg"></a> </div>
+            <div class="right">
+              <p>￥559.00</p>
+              <span>已出售5笔</span> </div>
+          </li>
+          <li>
+            <div class="left"> <a href="#"><img src="../images/details-1-2-5.jpg"></a> </div>
+            <div class="right">
+              <p>￥309.00</p>
+              <span>已出售8笔</span> </div>
+          </li>
+        </ul>
+      </div>
+      <div class="detail_left_bottom">
+        <h3>浏览记录</h3>
+        <ul>
+          <li>
+            <div class="left"> <a href="#"><img src="../images/details-1-2-1.jpg"></a> </div>
+            <div class="right">
+              <p>￥239.00</p>
+              <span>已出售8笔</span> </div>
+          </li>
+          <li>
+            <div class="left"> <a href="#"><img src="../images/details-1-2-2.jpg"></a> </div>
+            <div class="right">
+              <p>￥312.00</p>
+              <span>已出售8笔</span> </div>
+          </li>
+          <li>
+            <div class="left"> <a href="#"><img src="../images/details-1-2-3.jpg"></a> </div>
+            <div class="right">
+              <p>￥209.00</p>
+              <span>已出售6笔</span> </div>
+          </li>
+          <li>
+            <div class="left"> <a href="#"><img src="../images/details-1-2-4.jpg"></a> </div>
+            <div class="right">
+              <p>￥559.00</p>
+              <span>已出售5笔</span> </div>
+          </li>
+          <li>
+            <div class="left"> <a href="#"><img src="../images/details-1-2-5.jpg"></a> </div>
+            <div class="right">
+              <p>￥309.00</p>
+              <span>已出售8笔</span> </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail_right">
+      <div class="detail_right_top">
+        <div class="slideTxtBox">
+          <div class="hd"> 
+            
+            <!-- 下面是前/后按钮代码，如果不需要删除即可 --> 
+            <span class="arrow"><a class="next"></a><a class="prev"></a></span>
+            <ul>
+              <li>
+                <p>商品详情</p>
+              </li>
+              <li>
+                <p>商品评价</p>
+              </li>
+              <li>
+                <p>交易记录</p>
+              </li>
+              <li>
+                <p>商品咨询</p>
+              </li>
+              <li>
+                <p>售后保障</p>
+              </li>
+            </ul>
+          </div>
+          <div class="bd">
+            <div class="one">
+              <ul>
+                <li>
+                  <p>风格：休闲，欧美</p>
+                  <p>图案：拼色</p>
+                </li>
+                <li>
+                  <p>裙长：短裙</p>
+                  <p>面料：腈纶</p>
+                </li>
+                <li>
+                  <p>袖长：长袖</p>
+                </li>
+                <li>
+                  <p>领型：高领</p>
+                </li>
+              </ul>
+              <div class="one_con"> <img src="../images/details-1-1.jpg"> <img src="../images/details-1-2.jpg"> <img src="../images/details-1-3.jpg"> <img src="../images/details-1-4.jpg"> <img src="../images/details-1-5.jpg"> <img src="../images/details-1-6.jpg"> <img src="../images/details-1-7.jpg"> <img src="../images/details-1-8.jpg"> <img src="../images/details-1-9.jpg"> <img src="../images/details-1-10.jpg"> <img src="../images/details-1-11.jpg"> <img src="../images/details-1-12.jpg"> <img src="../images/details-1-13.jpg"> </div>
+            </div>
+            <div class="two">
+              <div class="two_con">
+                <div class="hp">
+                  <ul>
+                    <li style="width:142px; height:132px;">
+                      <p>0<i>%</i></p>
+                      <small>好评率</small> 
+                    </li>
+                    <li style="width:16px; height:132px; text-align:center;"> 
+                    	<em>|大家印象|</em> 
+                    </li>
+                    <li style="width:660px; height:132px;"> 
+                    	<div class="pj">
+                    	<h3>好评<span>（0%）</span><b></b></h3>
+                        <h3>中评<span>（0%）</span><b></b></h3>
+                        <h3>差评<span>（0%）</span><b></b></h3>
+                        </div>
+                    </li>
+                    <li style="width:1px; height:132px; background:#dddddd;"></li>
+                    <li>
+                    	<span>我购买过此商品</span>
+                        <h4><a href="#">我也要发表评价</a></h4>
+                    </li>
+                  </ul>
+                </div>
+                <ul class="pj_nav">
+                	<li><a href="#">全部评价（0）</a></li>
+                    <li><a href="#">好评（0）</a></li>
+                    <li><a href="#">中评（0）</a></li>
+                    <li><a href="#">差评（0）</a></li>
+                    <li><a href="#">有晒单（0）</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="three">
+              <div class="three_con">
+              	<table>
+                	<tr style="background:#f7f7f7;">
+                    	<th>买家</th>
+                    	<th>款式/型号</th>
+                        <th>数量</th>
+                        <th>成交时间</th>
+                    </tr>
+                    <tr>
+                    	<td>F**5</td>
+                        <td>颜色:浅灰色 尺码:S</td>
+                        <td>1</td>
+                        <td>2017-11-12</td>
+                    </tr>
+                    <tr>
+                    	<td>w**4</td>
+                        <td>颜色:浅灰色 尺码:M</td>
+                        <td>1</td>
+                        <td>2017-11-03</td>
+                    </tr>
+                </table>
+                <p><span>上一页</span><em>1/1</em><span>下一页</span></p>
+              </div>
+            </div>
+            <div class="four">
+              <div class="four_con">
+              	<h3>发表咨询</h3>
+                <p>声明：您可在购买前对产品包装、颜色、运输、库存等方面进行咨询，我们有专人进行回复！因厂家随时会更改一些产品的包装、颜色、产地等参数，所以该回复仅在当时对提问者有效，其他网友仅供参考！咨询回复的工作时间为：周一至周五，9:00至18:00，请耐心等待工作人员回复。</p>
+                <span>咨询内容：</span><textarea>请输入内容</textarea>
+                <button>确定</button>
+              </div>
+            </div>
+            <div class="five">
+              <div class="five_con">
+                <p>为了给您提供最满意的购物体验，伊宅购.村安商城为您提供优质的售后保障服务</p>
+                <span>保障一：品质保障</span>
+                <p>对于每一款网上销售的商品，我们都能给予100%品质保证，因为商城产品全部由厂家和品牌总代提供，并签订供货合同、质量保证书以及质量保证金，同时我们将不定时进行抽查，如有质量问题马上终止合作，并扣除质量保证金，同时为顾客提供假一赔三服务，如果您认为购买的商品是假货，并能提供构国家相关质检机构的证明文件，我们会返还您所购商品金额的三倍货款。</p>
+                <span>保障二：15天退换货</span>
+                <p>从您收到货的那刻算起，在15天内如果发现质量或服务问题（少发物件、质量问题、寄错物品...等问题 ）都可以免费给您退换。（3C数码产品由商城联系厂家，享受法定三包售后服务）</p>
+                <span>保障三：24小时内及时发货</span>
+                <p>每天15点之前的订单，会在当天发货。15点以后订单会再第二天发货，保证做到所有订单在支付后24小时内发货。</p>
+                <span>客户注意：</span>
+                <p>1. 收到货品时，可打开商品包装检查商品是否完好无损，如果商品存在质量问题请整单拒收，不支持部分拒收。</p>
+                <p>2. 为保障您的权益，请与配送员当面核对商品种类、数量、规格、赠品、金额等是否与订单一致，准确无误再进行签收。</p>
+                <p>3. 如果刚收到，发现商品种类、数量、规格、赠品、金额或者质量与描述未保持一致，为了避免您的重大损失。请及时联系售后：400-650-5526 QQ; 2357084932\2663965438 或直接使用手机商城右下角在线客服</p>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+          <script type="text/javascript"> jQuery(".slideTxtBox").slide({trigger:"click"});</script>
+         
+          <div class="detail_right_bottom"> </div>
+        </div>
+     </div>
+    </div>
+  </div>
+  <div class="item_box_footer_box">
+    <div class="footer">
+      <div class="promise"> <img src="../images/footer-img1.png"><img src="../images/footer-img2.png"><img src="../images/footer-img3.png"><img src="../images/footer-img4.png"> </div>
+      <ul class="handbook">
+        <li>
+          <h3><a href="#">新手指南</a></h3>
+          <a href="#">注册会员</a> <a href="#">如何购物</a> <a href="#">订单状态</a> <a href="#">发票制度</a> <a href="#">省钱宝典</a> </li>
+        <li>
+          <h3><a href="#">支付方式</a></h3>
+          <a href="#">货到付款</a> <a href="#">银行汇款</a> <a href="#">在线支付</a> <a href="#">账户余额使用</a> </li>
+        <li>
+          <h3><a href="#">配送说明</a></h3>
+          <a href="#">配送方式</a> <a href="#">配送时间</a> <a href="#">快递费用</a> <a href="#">签收须知</a> </li>
+        <li>
+          <h3><a href="#">帮助中心</a></h3>
+          <a href="#">找回密码</a> <a href="#">常见问题</a> <a href="#">投诉建议</a> <a href="#">营业执照</a> </li>
+        <li>
+          <h3><a href="#">购物保证</a></h3>
+          <a href="#">缺货补发</a> <a href="#">15天退换货</a> <a href="#">注册条款</a> <a href="#">购物须知</a> </li>
+        <li>
+          <h3><a href="#">会员服务</a></h3>
+          <a href="#">会员等级</a> <a href="#">积分政策</a> <a href="#">大客户和团购</a> <a href="#">代金券</a> </li>
+        <li>
+          <p>客服电话</p>
+          <span>4006505526</span> <small>周一至周日8:30-18:00</small> <a href="#"><i class="iconfont">&#xe625;</i>24小时在线客服</a> </li>
+      </ul>
+      <div class="friends_link">
+        <p>友情链接</p>
+        <div class="link"> <a href="#">手工制作</a><a href="#">小魔妖时尚网</a><a href="#">特步跑步鞋</a><a href="#">钻石戒指</a><a href="#">眼镜店</a><a href="#">Darry Ring</a><a href="#">杭州女装网</a><a href="#">安卓论坛</a><a href="#">戒指</a><a href="#">世界名表</a><a href="#">厂家网</a><a href="#">女性时尚</a><a href="#">手机靓号网</a><a href="#">招商加盟</a><a href="#">99女性</a><a href="#">手游充值平台</a><a href="#">发型设计</a><a href="#">极品女性网</a> <a href="#">百姓网</a><a href="#">居外网</a><a href="#">品牌加盟网</a><a href="#">ROM下载之家</a><a href="#">白京商城</a><a href="#">女装批发</a><a href="#">国美在线</a><a href="#">机票预订</a><a href="#">淘宝学堂</a><a href="#">辣妈帮社区</a><a href="#">蜂蜜</a><a href="#">白酒招商</a><a href="#">中外玩具网</a><a href="#">美食网</a><a href="#">致富经</a><a href="#">加盟网</a><a href="#">寻购网</a><a href="#">化妆品品牌</a><a href="#">微信小程序</a> <a href="#">u88连锁加盟网</a><a href="#">开店教程</a><a href="#">礼品</a><a href="#">世界名表</a><a href="#">团购导航</a><a href="#">运输成本管理</a><a href="#">家装公司</a><a href="#">健康商城</a><a href="#">保健品商城</a> </div>
+      </div>
+    </div>
+    <div class="about_us">
+      <div class="about_us_link"> <a href="#">关于我们</a> | <a href="#">联系我们</a> | <a href="#">广告服务</a> | <a href="#">品牌入驻</a> | <a href="#">人才招聘</a> | <a href="#">隐私声明</a> | <a href="#">法律声明</a> | <a href="#">村安文化</a> | <a href="#">网站地图</a> </div>
+      <div class="hot-phone">
+        <p>Copyright@2011-2015 村安cunan.com 备案编号：湘ICP备13004070号 公安机关备案号：43019002000356 经营性许可证：湘B2-20130040 全国统一服务热线：4006505526（免长途费）</p>
+        <em>村安网法律顾问：湖南弘一律师事务所 尹兰英律师</em> </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+//百度统计代码
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa630f96b6a9dd549675d26373853f7f1' type='text/javascript'%3E%3C/script%3E"));
+</script>

@@ -1,0 +1,392 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="keywords" content="村安网、村安商城、村安网上商城、化妆品商城、个人彩护商城、手机数码商城、家居百货商城、男装内衣商城、女装内衣商城、食品酒水商城、家用电器商城、男女鞋靴商城、箱包配饰商城、母婴儿童用品商城、营养保健商城、数码影音商城、手机通讯商城">
+<meta name="description" content="村安商城是一个拥有个人彩护、手机数码、家居百货、母婴儿童、男女鞋靴、男装内衣、女装内衣、食品酒水、箱包配饰、家用电器、数码影音、营养保健等数万款产品的综合性网购商城，为您提供经济实惠的购物新生活">
+<title>购物车</title>
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link rel="stylesheet" type="text/css" href="../css/shopcart.css">
+
+<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+$(".add-plus-input .add").click(function() {
+var $num = $(this).next(".num");
+var number = $num.attr("value");
+$num.attr("value",parseInt(number) + 1);
+});
+$(".add-plus-input .plus").click(function() {
+var $num = $(this).prev(".num");
+var number = $num.attr("value");
+$num.attr("value",parseInt(number) - 1);
+});
+})
+</script>
+<script src="../../banner/js/jquery1.42.min.js"></script>
+<script src="../../banner/js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+
+<body>
+<div class="item_box">
+	<div class="fix">
+		<div class="person">
+			<a href="#"><i class="iconfont">&#xe605;</i></a>
+     	</div>
+     	<div class="cat">
+     		<a href="shopcart.html"><i class="iconfont">&#xe601;</i></a>
+        	<p><a href="shopcart.html">购物车</a></p>
+     	</div>
+     	<div class="custom_service">
+     		<a href="#"><i class="iconfont">&#xe62c;</i></a>
+     	</div>
+     	<div class="APP">
+     		<a href="#"><p>APP</p></a>
+        	<div class="APP_card">
+        		<img src="../images/app-code.png">
+        	</div>
+     	</div>
+     	<div class="back_to_top">
+     		<a href="#"><i class="iconfont">&#xe60f;</i></a>
+     	</div>
+	</div>
+    <div class="item_box_top">
+    	<div id="topbar">
+      		<div class="topbar">
+        		<div class="home">
+          			<div class="home_left">
+          				<p><a href="#"><b class="iconfont">&#xe62b;</b>村安商城</a><i class="iconfont">&#xe627;</i></p>          
+          			</div>
+          			<div class="home-ed-card">
+              			<p><em class="iconfont">&#xe952;</em><a href="#">手机APP<small class="iconfont">&#xe600;</small></a></p>
+              			<div class="ed-cord"><img src="../images/top-code.png"></div>
+          			</div>
+        		</div>
+        		<div class="user_login">
+          			<p>欢迎来到村安商城！</p>
+          			<span><a href="login.html" style="color:red;">[登录]</a> 或 <a href="register.html" style="color:red;">[注册]</a></span>
+          			<ul class="login">
+          				<li><p><span>|</span><a href="#" class="ca">我的村安</a></p>
+          	  				<div class="submenu"><a href="#">积分抵现</a> <a href="#">我的收藏</a> <a href="#">我的余额</a> <a href="#">我的评论</a> <a href="#">礼券/礼品卡</a></div>
+          				</li>
+          				<li><p><span>|</span><a href="#">我的订单</a></p></li>
+          				<li><p><span>|</span><a href="#" class="ca">帮助中心</a></p>
+          	  				<div class="submenu1"><a href="#">联系客服</a> <a href="#">我要投诉</a> <a href="#">自助发票</a></div>
+          				</li>
+          			</ul>
+        		</div>
+       		</div>
+      	</div>
+        <div id="schedule">
+    	<div class="schedule">
+    		<div class="schedule_left">
+        		<img src="../images/logo.png">
+        	</div>
+        	<ul class="schedule_right">
+        		<li>
+                	<b>1</b><p>我的购物车</p>
+                </li>
+            	<li>
+                	<b>2</b><p>确认订单</p>
+                </li>
+                <li>
+                	<b>3</b><p>成功提交订单</p>
+                </li>
+        	</ul>
+    	</div>
+    	</div>
+        <div id="nav">
+        <div class="nav">
+        	<div class="nav-left">
+        		<p><i class="iconfont">&#xe601;</i>购物车</p>
+            </div>
+            <div class="return">
+            	<p><a href="../index.html">&lt; 返回继续购物</a></p>
+            </div>
+        </div>
+        </div>
+	</div>
+    <div class="content">
+    	<div class="cat_box">
+        	<div class="cat">
+        	<table>
+            	<tr>
+                	<td><input type="checkbox"> 全选</td>
+                    <td style="width:400px;">商品</td>
+                    <td>单价（元）</td>
+                    <td style="width:50px;">数量</td>
+                    <td>小计（元）</td>
+                    <td>操作</td>
+                </tr>
+            </table>
+            </div>
+            <div class="goods1_box">
+            	<p>店铺：PLAYACH专卖店</p>
+                <table>
+                	<tr>
+                    	<td style="width:30px;"><input type="checkbox"></td>
+                        <td style="width:574px;">
+                        	<div class="goods1">
+                            	<div class="goods1_left">
+                        			<a href="detail.html"><img src="../images/shopcart-goods1.jpg"></a>
+                                </div>
+                                <div class="goods1_center">
+                                	<p><a href="detail.html">【女神格调】PLAYACH 条纹撞色高领套头针织长袖连衣裙</a></p>
+                                    <span>[下单立减30.00元]</span>
+                                </div>                               
+                                <div class="goods1_right">
+                                	<em><a href="#">颜色:浅灰色</a></em>
+                                    <i><a href="#">尺码:S</a></i>
+                                </div>
+                        	</div>
+                        </td>
+                        <td style=" width:80px;">
+                        	<div class="goods1_price">
+                        		<i>268.00</i>
+                            	<b><a href="#">优惠信息<em class="iconfont">&#xe600;</em></a></b>
+                                <div class="submenu">
+                                	<h3><a href="#">专卖店满99元免运费 下单立减30.00元</a></h3>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="width:72px;">
+                            <div class="add-plus-input">
+								<a href="javascript:;" class="add btn">+</a><input type="text" class="num" value="0" /><a href="javascript:;" class="plus btn">-</a>
+                                <p>有货</p>
+							</div>
+                        </td>
+                        <td><b>238.00</b></td>
+                        <td><div class="cz"><a href="#">删除</a> <a href="#">移到收藏夹</a></div></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="goods2_box">
+            	<p>店铺：华为手机专卖店</p>
+                <table>
+                	<tr>
+                    	<td style="width:30px;"><input type="checkbox"></td>
+                        <td style="width:574px;">
+                        	<div class="goods2">
+                            	<div class="goods2_left">
+                        			<a href="#"><img src="../images/shopcart-goods2.jpg"></a>
+                                </div>
+                                <div class="goods2_center">
+                                	<p><a href="#">华为/HUAWEI P10套装版（VTR-AL00/4G+64G）5.1英寸 八核 + 微智核i6 全网通手机 800万+1200万+2000万像素 官方标配</a></p>
+                                   <!-- <span>[下单立减30.00元]</span>-->
+                                </div>                               
+                                <div class="goods2_right">
+                                	<em><a href="#">颜色:套装【钻雕金+扫地机器人】</a></em>
+                                    <i><a href="#">RAM:4GB</a></i>
+                                    <i><a href="#">ROM:64GB </a></i>
+                                </div>
+                        	</div>
+                        </td>
+                        <td style=" width:80px;">
+                        	<div class="goods2_price">
+                        		<i>7068.00</i>
+                            	<b><a href="#">优惠信息<em class="iconfont">&#xe600;</em></a></b>
+                                <div class="submenu">
+                                	<h3><a href="#">专卖店满99元免运费</a></h3>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="width:72px;">
+                            <div class="add-plus-input">
+								<a href="javascript:;" class="add btn">+</a><input type="text" class="num" value="0" /><a href="javascript:;" class="plus btn">-</a>
+                                <p>有货</p>
+							</div>
+                        </td>
+                        <td><b>7068.00</b></td>
+                        <td><div class="cz"><a href="#">删除</a> <a href="#">移到收藏夹</a></div></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="goods3_box">
+            	<p>店铺：自然堂专卖店</p>
+                <table>
+                	<tr>
+                    	<td style="width:30px;"><input type="checkbox"></td>
+                        <td style="width:574px;">
+                        	<div class="goods3">
+                            	<div class="goods3_left">
+                        			<a href="#"><img src="../images/shopcart-goods3.jpg"></a>
+                                </div>
+                                <div class="goods3_center">
+                                	<p><a href="#">自然堂 粉红素颜霜50g 提亮肤色 底妆面霜</a></p>
+                                    <span>[下单立减10.00元]</span>
+                                </div>                               
+                                <div class="goods3_right">
+                                	<em><a href="#">容量：50g</a></em>
+                                </div>
+                        	</div>
+                        </td>
+                        <td style=" width:80px;">
+                        	<div class="goods3_price">
+                        		<i>159.00</i>
+                            	<b><a href="#">优惠信息<em class="iconfont">&#xe600;</em></a></b>
+                                <div class="submenu">
+                                	<h3><a href="#">专卖店满99元免运费 下单立减10.00元</a></h3>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="width:72px;">
+                            <div class="add-plus-input">
+								<a href="javascript:;" class="add btn">+</a><input type="text" class="num" value="0" /><a href="javascript:;" class="plus btn">-</a>
+                                <p>有货</p>
+							</div>
+                        </td>
+                        <td><b>149.00</b></td>
+                        <td><div class="cz"><a href="#">删除</a> <a href="#">移到收藏夹</a></div></td>
+                    </tr>
+                </table>
+            </div>  
+            <div class="total">
+            	<table>
+                	<tr>
+                    	<td style="width:100px;"><input type="checkbox"> 全选</td>
+                        <td id="delate" style=" width:400px;"><a href="#">删除选中的商品</a></td>
+                        <td  id="zj">总价<a href="#">¥7495.00</a>—下单立减<a href="#">¥40.00</a>—满减优惠<a href="#">¥0.00=</a> 结算金额：<a href="#"><span>¥7455.00</span></a></td>
+                    </tr>
+                </table>
+                <div class="balance">
+                	
+                    
+                    <button>去结算</button>
+                    <h3>结算金额：<a href="#">¥7455.00</a>[不含运费]</h3>
+                    <p>已选<a href="#">3</a>件商品</p>
+                </div>
+            </div>         
+        </div>   
+        
+        	<div class="slideTxtBox">
+			<div class="hd">
+
+				<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+				<span class="arrow"><a class="next"></a><a class="prev"></a></span>
+
+				<ul><li><p>精品推荐</p></li><li><p>猜您喜欢</p></li><li><p>近期热卖</p></li></ul>
+			</div>
+            <div class="bd">
+            	<div class="one">
+                	<div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-1-1.jpg"/></a></div>
+						<div class="title">
+                        <p><a href="#" target="_blank"> 长白山带土鲜人参礼盒东北吉林特产带土鲜参泡酒煲汤</a></p>
+                        <small>销量：122</small>
+                        <b>¥119</b>
+                        </div>
+                        </div>
+
+                    <div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-1-2.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">【组合支付】vivo X9 5.5英寸 八核 全网通手机 前置2000万像素柔光双摄 双卡双待 官方标配</a></p>
+                        <small>销量：48</small>
+                        <b>¥2398</b>
+                        </div>
+                        </div>
+						<div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-1-3.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">右道 高腰加厚小直筒裤牛仔大码长裤加绒保暖牛仔裤女直筒</a></p>
+                        <small>销量：2</small>
+                        <b>¥179</b>
+                        </div>
+                        </div>
+						<div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-1-4.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">【美丽有一套】Danzi丹姿 水密码红石榴赋活焕亮护肤礼盒</a></p>
+                        <small>销量：5</small>
+                        <b>¥196</b>
+                        </div>
+                        </div>
+						<div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-1-5.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">CHANDO 自然堂活泉矿物补水倍润保湿霜50g 控油</a></p>
+                        <small>销量：5</small>
+                        <b>¥90</b>
+                        </div>
+                        </div>
+                </div>
+                <div class="two">
+                	<div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-2-1.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">唯臻农场 黑龙江稻花香米 东北大米礼盒 5kg</a></p>
+                        <small>销量：316</small>
+                        <b>¥199</b></div></div>
+					<div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-2-2.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">法国原瓶进口红酒整箱 买一箱送一箱 12瓶歌瑞安侍酒师干红葡萄酒包邮</a></p>
+                        <small>销量：56</small>
+                        <b> ¥1459</b></div></div>
+					<div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-2-3.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">米基 秋季透气跑步鞋女平底百搭韩版休闲小红鞋网面鞋运动鞋女</a></p>
+                        <small> 销量：6</small>
+                        <b>¥159</b></div></div>
+					<div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-2-4.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">【潮我看】木林森 秋冬季新款低帮皮鞋舒适简约商务休闲鞋系带单鞋</a></p>
+                        <small>销量：17</small>
+                        <b>¥269</b></div></div>
+					<div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-2-5.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">木林森 秋季休闲皮鞋男士商务皮鞋时尚低帮鞋套脚鞋子男</a></p>
+                        <small>销量：19</small>
+                        <b>¥239</b></div></div>
+                </div>
+                <div class="three">
+                	<div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-4-1.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">智能免过滤家用豆浆机全自动多功能加热大容量不锈钢</a></p>
+                        <small>销量：79</small>
+                        <b>¥599</b></div></div>
+                        <div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-4-2.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">扬子 手持蒸气挂烫机家用便携式熨烫机熨斗蒸汽刷慈溪小家电挂烫机</a></p>
+                        <small>销量：113</small>
+                        <b>¥499</b></div></div>
+                        <div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-4-3.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">双杆蒸汽挂烫机 家用烫衣服手持式熨衣机迷你熨斗熨烫机</a></p>
+                        <small>销量：185</small>
+                        <b>¥569</b></div></div>
+                        <div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-4-4.jpg"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">电熨斗 小型手持烫衣服蒸汽刷熨烫机便携式顺衣神器迷你电熨斗挂烫机家用</a></p>
+                        <small>销量：96</small>
+                        <b>¥279</b></div></div>
+                        <div class="photo">
+						<div class="pic"><a href="#" target="_blank"><img src="../images/shopcart1-4-5.png"/></a></div>
+						<div class="title"><p><a href="#" target="_blank">【爱尚家】水森活 空气清新机2850D 1200万负离子强效空气清新机（颜色随机发）</a></p>
+                        <small> 销量：80</small>
+                        <b>¥590</b></div></div>
+                </div>
+            </div></div>
+        <script type="text/javascript">jQuery(".slideTxtBox").slide();</script>
+    <div id="footer">
+    <div class="footer">
+    	<div class="about_us_link">
+        	<a href="#">关于我们</a> |
+            <a href="#">联系我们</a> |
+            <a href="#">广告服务</a> |
+            <a href="#">品牌入驻</a> |
+            <a href="#">人才招聘</a> |
+            <a href="#">隐私声明</a> |
+            <a href="#">法律声明</a> |
+            <a href="#">村安文化</a> |
+            <a href="#">网站地图</a>
+        </div>
+        <div class="hot-phone">
+        <p>Copyright@2011-2015 村安cunan.com 备案编号：湘ICP备13004070号 公安机关备案号：43019002000356 经营性许可证：湘B2-20130040 全国统一服务热线：4006505526（免长途费）</p>
+        <em>村安网法律顾问：湖南弘一律师事务所 尹兰英律师</em>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+//百度统计代码
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa630f96b6a9dd549675d26373853f7f1' type='text/javascript'%3E%3C/script%3E"));
+</script>
